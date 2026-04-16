@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>🚀 Interceptor: Earth Defense</title>
-    <meta name="description" content="Um jogo de tiro arcade inspirado nos clássicos da era Atari 2600. Defenda a Terra da invasão de monstros!">
+    <meta name="description" content="Um jogo de tiro arcade inspirado nos clássicos da era Atari 2600. Defenda a Terra!">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
@@ -26,7 +26,8 @@
                 <p class="subtitle">EARTH DEFENSE</p>
                 <div class="instructions">
                     <p>DEFENDA O PLANETA</p>
-                    <p>USE O CONTROLE CIRCULAR ABAIXO</p>
+                    <p>TOQUE NAS LATERAIS PARA MOVER</p>
+                    <p>TOQUE NO CENTRO PARA ATIRAR</p>
                 </div>
                 <button id="start-btn">INICIAR MISSÃO</button>
             </div>
@@ -34,18 +35,19 @@
             <div id="game-over-screen" class="screen hidden">
                 <h2 class="failed">MISSÃO FALHOU</h2>
                 <p>A TERRA FOI INVADIDA</p>
-                <div class="final-score">PONTUAÇÃO FINAL: <span id="final-score-val">0</span></div>
+                <div class="final-score">PONTUAÇÃO: <span id="final-score-val">0</span></div>
                 <button id="retry-btn">RECOMECAR</button>
             </div>
         </div>
 
         <div id="controller-area">
-            <div id="circular-control">
-                <div id="btn-left" class="control-zone" data-action="left"></div>
-                <div id="btn-fire" class="control-zone" data-action="fire">
-                    <div class="center-core"></div>
+            <div id="master-controller">
+                <div id="touch-pad">
+                    <div class="label-left">L</div>
+                    <div class="label-center">FIRE</div>
+                    <div class="label-right">R</div>
+                    <div id="joy-stick"></div>
                 </div>
-                <div id="btn-right" class="control-zone" data-action="right"></div>
             </div>
         </div>
     </div>
