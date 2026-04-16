@@ -1,0 +1,241 @@
+:root {
+    --atari-black: #050505;
+    --atari-red: #ff3e3e;
+    --atari-cyan: #00f2ff;
+    --atari-green: #39ff14;
+    --atari-pink: #ff00ff;
+    --atari-orange: #ff9d00;
+    --glow: 0 0 10px rgba(0, 242, 255, 0.5);
+    --retro-font: 'Press Start 2P', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    touch-action: none;
+}
+
+body {
+    background-color: #111;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    max-height: 900px;
+    background: var(--atari-black);
+    border: 4px solid #333;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#crt-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.1) 50%
+    ), 
+    linear-gradient(
+        90deg, 
+        rgba(255, 0, 0, 0.05), 
+        rgba(0, 255, 0, 0.02), 
+        rgba(0, 0, 255, 0.05)
+    );
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+#hud {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    font-family: var(--retro-font);
+    font-size: 12px;
+    color: var(--atari-cyan);
+    text-shadow: var(--glow);
+    z-index: 10;
+}
+
+canvas {
+    flex: 1;
+    width: 100%;
+    background: radial-gradient(circle at center, #1a0a2e 0%, #050505 100%);
+    image-rendering: pixelated;
+}
+
+#screens {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 200px); /* Leave space for controller */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.screen {
+    text-align: center;
+    padding: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    font-family: var(--retro-font);
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: var(--atari-red);
+    text-shadow: 3px 3px 0px var(--atari-pink);
+}
+
+.subtitle {
+    font-family: var(--retro-font);
+    font-size: 14px;
+    color: var(--atari-cyan);
+    margin-bottom: 30px;
+}
+
+.instructions {
+    margin: 20px 0;
+    font-size: 10px;
+    font-family: var(--retro-font);
+    line-height: 2;
+    color: #888;
+}
+
+button {
+    background: transparent;
+    border: 4px solid var(--atari-red);
+    color: var(--atari-red);
+    padding: 15px 30px;
+    font-family: var(--retro-font);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: var(--atari-red);
+    color: white;
+    box-shadow: 0 0 20px var(--atari-red);
+}
+
+#controller-area {
+    height: 220px;
+    background: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 4px solid #333;
+    z-index: 50;
+}
+
+#circular-control {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    background: #000;
+    border-radius: 50%;
+    border: 6px solid #444;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 5px 15px rgba(0,0,0,0.5);
+    display: flex;
+    overflow: hidden;
+}
+
+.control-zone {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#btn-fire {
+    flex: 1.5;
+}
+
+.center-core {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #ff3e3e, #8c0000);
+    border-radius: 50%;
+    border: 4px solid #333;
+    box-shadow: 0 0 20px rgba(255, 62, 62, 0.4);
+    pointer-events: none;
+}
+
+.control-zone:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#btn-left::after {
+    content: "◀";
+    color: #444;
+    font-size: 24px;
+}
+
+#btn-right::after {
+    content: "▶";
+    color: #444;
+    font-size: 24px;
+}
+
+/* Glitch Effect */
+.glitch {
+    position: relative;
+}
+
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--atari-black);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--atari-cyan);
+    animation: glitch-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--atari-pink);
+    animation: glitch-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-1 {
+    0% { clip-path: inset(10% 0 30% 0); }
+    100% { clip-path: inset(40% 0 10% 0); }
+}
+
+@keyframes glitch-2 {
+    0% { clip-path: inset(50% 0 5% 0); }
+    100% { clip-path: inset(15% 0 60% 0); }
+}

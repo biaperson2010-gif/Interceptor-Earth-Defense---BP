@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🚀 Interceptor: Earth Defense</title>
+    <meta name="description" content="Um jogo de tiro arcade inspirado nos clássicos da era Atari 2600. Defenda a Terra da invasão de monstros!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="crt-overlay"></div>
+        <div id="hud">
+            <div class="hud-item">SCORE: <span id="score-val">000000</span></div>
+            <div class="hud-item">MULT: <span id="mult-val">x1</span></div>
+        </div>
+
+        <canvas id="gameCanvas"></canvas>
+
+        <div id="screens">
+            <div id="start-screen" class="screen">
+                <h1 class="glitch" data-text="INTERCEPTOR">INTERCEPTOR</h1>
+                <p class="subtitle">EARTH DEFENSE</p>
+                <div class="instructions">
+                    <p>DEFENDA O PLANETA</p>
+                    <p>USE O CONTROLE CIRCULAR ABAIXO</p>
+                </div>
+                <button id="start-btn">INICIAR MISSÃO</button>
+            </div>
+
+            <div id="game-over-screen" class="screen hidden">
+                <h2 class="failed">MISSÃO FALHOU</h2>
+                <p>A TERRA FOI INVADIDA</p>
+                <div class="final-score">PONTUAÇÃO FINAL: <span id="final-score-val">0</span></div>
+                <button id="retry-btn">RECOMECAR</button>
+            </div>
+        </div>
+
+        <div id="controller-area">
+            <div id="circular-control">
+                <div id="btn-left" class="control-zone" data-action="left"></div>
+                <div id="btn-fire" class="control-zone" data-action="fire">
+                    <div class="center-core"></div>
+                </div>
+                <div id="btn-right" class="control-zone" data-action="right"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
